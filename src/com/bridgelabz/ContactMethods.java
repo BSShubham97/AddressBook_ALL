@@ -62,7 +62,9 @@ public class ContactMethods {
     /**
      * DISPLAY ALL THE CONTACTS IN COLLECTION
      */
-    public void displayContacts() {
+    public void displayContacts() {if (contactsList.isEmpty()){
+        System.out.println("::::::::::::::::::CONTACT LIST IS EMPTY:::::::::::::::::: ");
+    }else
         contactsList.stream().forEach(contact -> {
             System.out.println(contact);
         });
