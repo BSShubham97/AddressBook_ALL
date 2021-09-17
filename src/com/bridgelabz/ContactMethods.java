@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ContactMethods {
+    //ABILITY TO ADD MULTIPLE PERSONS IN ADDRESSBOOK USING COLLECTION ARRAYLIST
     List<Contact> contactsList = new ArrayList<Contact>();
     Scanner input = new Scanner(System.in);
 
@@ -161,6 +162,6 @@ public class ContactMethods {
         if (found)
             System.out.println("SUCCESSFUL");
         else
-            System.out.println("Name not found");
+            System.out.println("NAME NOT FOUND");
     }
 }
