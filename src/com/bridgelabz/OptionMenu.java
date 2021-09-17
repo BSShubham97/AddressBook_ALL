@@ -33,6 +33,9 @@ class OptionMenu extends ContactMethods {
                     editPerson();
                     break;
                 case 4:
+                    removePerson();
+                    break;
+                case 5:
                     System.out.println("PROGRAM EXITED !");
                     quit = true;
                     break;

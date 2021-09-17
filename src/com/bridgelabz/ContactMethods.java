@@ -10,6 +10,7 @@ public class ContactMethods {
 
     /**
      * ADD NEW CONTACT IN ADDRESSBOOK
+     *
      * @return ARRAYLIST OF CONTACTS
      */
     public List<Contact> addNewContact() {
@@ -24,9 +25,21 @@ public class ContactMethods {
         System.out.println("Enter State");
         String state = input.next();
         System.out.println("Enter ZIP");
-        int zip = input.nextInt();
+        int zip = 0;
+        try {
+            zip = input.nextInt();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Enter Phonenumber");
-        long phonenumber = input.nextLong();
+        long phonenumber = 0;
+        try {
+            phonenumber = input.nextLong();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("Enter Email");
         String email = input.next();
 
@@ -128,5 +141,26 @@ public class ContactMethods {
             System.out.println("SUCCESSFUL");
         else
             System.out.println("NAME NOT FOUND");
+    }
+
+    /**
+     * DELETE CONTACT BASED ON FIRSTNAME
+     */
+    public void removePerson() {
+        System.out.println("ENTER NAME TO BE DELETED");
+        String removeName = input.next();
+
+        boolean found = false;
+        for (int i = 0; i < contactsList.size(); i++) {
+
+            if (contactsList.get(i).getFirstname().equals(removeName)) {
+                found = true;
+                contactsList.remove(i);
+            }
+        }
+        if (found)
+            System.out.println("SUCCESSFUL");
+        else
+            System.out.println("Name not found");
     }
 }
