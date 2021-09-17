@@ -1,8 +1,6 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ContactMethods {
     //ABILITY TO ADD MULTIPLE PERSONS IN ADDRESSBOOK USING COLLECTION ARRAYLIST
@@ -15,8 +13,15 @@ public class ContactMethods {
      * @return ARRAYLIST OF CONTACTS
      */
     public List<Contact> addNewContact() {
+        Contact contact = new Contact();
+
         System.out.println("Enter Firstname:: ");
         String firstname = input.next();
+        if (isthereaDuplicateName(firstname) == true) {
+            System.out.println("NAME ALREADY EXISTS");
+            return null;
+        }
+
         System.out.println("Enter Lastname");
         String lastname = input.next();
         System.out.println("Enter Address");
@@ -44,7 +49,6 @@ public class ContactMethods {
         System.out.println("Enter Email");
         String email = input.next();
 
-        Contact contact = new Contact();
 
         contact.setFirstname(firstname);
         contact.setLastname(lastname);
@@ -62,12 +66,13 @@ public class ContactMethods {
     /**
      * DISPLAY ALL THE CONTACTS IN COLLECTION
      */
-    public void displayContacts() {if (contactsList.isEmpty()){
-        System.out.println("::::::::::::::::::CONTACT LIST IS EMPTY:::::::::::::::::: ");
-    }else
-        contactsList.stream().forEach(contact -> {
-            System.out.println(contact);
-        });
+    public void displayContacts() {
+        if (contactsList.isEmpty()) {
+            System.out.println("::::::::::::::::::CONTACT LIST IS EMPTY:::::::::::::::::: ");
+        } else
+            contactsList.stream().forEach(contact -> {
+                System.out.println(contact);
+            });
     }
 
     /**
@@ -165,5 +170,20 @@ public class ContactMethods {
             System.out.println("SUCCESSFUL");
         else
             System.out.println("NAME NOT FOUND");
+    }
+
+    /**
+     * TO CHECK IF NAME IS UNIQUE
+     *
+     * @param firstname
+     * @return IF DUPLICATE RETURN TRUE
+     */
+    public boolean isthereaDuplicateName(String firstname) {
+        for (Contact contact : contactsList) {
+            if (contact.getFirstname().equals(firstname)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
