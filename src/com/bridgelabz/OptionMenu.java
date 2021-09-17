@@ -18,7 +18,8 @@ class OptionMenu extends ContactMethods {
             System.out.println("Choose a option: ");
             System.out.println("1 - CREATE NEW CONTACT");
             System.out.println("2 - DISPLAY ALL CONTACTS");
-            System.out.println("3 - QUIT CONTACT MENU");
+            System.out.println("3 - EDIT CONTACT");
+            System.out.println("4 - QUIT CONTACT MENU");
             System.out.print("Enter Option: ");
             int option = input.nextInt();
             switch (option) {
@@ -29,6 +30,9 @@ class OptionMenu extends ContactMethods {
                     displayContacts();
                     break;
                 case 3:
+                    editPerson();
+                    break;
+                case 4:
                     System.out.println("PROGRAM EXITED !");
                     quit = true;
                     break;
