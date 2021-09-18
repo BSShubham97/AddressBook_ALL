@@ -56,14 +56,14 @@ class MultipleBooks {
 
         while (true) {
             OptionMenu option = new OptionMenu();
-            System.out.println("SELECT OPTION \n 1. CREATE ADDRESS BOOK /2. DISPLAY ADDRESS BOOK / 0. EXIT ");
+            System.out.println("SELECT OPTION \n 1. CREATE ADDRESS BOOK /2. DISPLAY ADDRESS BOOK /3. GET DETAILS FROM CITY 0. EXIT ");
             System.out.print("Enter Option: ");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     System.out.println("ENTER NAME OF ADDRESS BOOK: ");
                     String addBookName = scanner.next();
-                    if(bookList.containsKey(addBookName))
+                    if (bookList.containsKey(addBookName))
                         System.out.println("ADDRESSBOOK NAME ALREADY EXISTS");
                     else
                         bookList.put(addBookName, option.operation());
@@ -75,13 +75,25 @@ class MultipleBooks {
                             Map.Entry obj = (Map.Entry) it.next();
                             System.out.println(obj.getKey());
                         }
-                    }else
+                    } else
                         System.out.println("::::::::::::::EMPTY ADDRESSBOOK DATABASE:::::::::::::::");
                     break;
+
+                case 3:
+                    System.out.println("Enter Name for City/State");
+                    String nameForCity = scanner.next();
+                    for (String keyOfBook : bookList.keySet()) {
+                        bookList.get(keyOfBook)
+                                .stream()
+                                .filter(contactInfo -> nameForCity.equals(contactInfo.getCity()))
+                                .forEach(System.out::println);
+                    }
+                    break;
+
                 case 0:
                     System.exit(0);
-
                     break;
+
                 default:
                     throw new IllegalStateException("INVALID CHOICE: " + choice);
             }

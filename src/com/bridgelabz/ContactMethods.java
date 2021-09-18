@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ContactMethods {
@@ -14,52 +15,42 @@ public class ContactMethods {
      */
     public List<Contact> addNewContact() {
         Contact contact = new Contact();
-
-        System.out.println("Enter Firstname:: ");
-        String firstname = input.next();
-        if (isthereaDuplicateName(firstname) == true) {
-            System.out.println("NAME ALREADY EXISTS");
-            return null;
-        }
-
-        System.out.println("Enter Lastname");
-        String lastname = input.next();
-        System.out.println("Enter Address");
-        String address = input.next();
-        System.out.println("Enter City");
-        String city = input.next();
-        System.out.println("Enter State");
-        String state = input.next();
-        System.out.println("Enter ZIP");
-        int zip = 0;
         try {
-            zip = input.nextInt();
+            System.out.println("Enter Firstname:: ");
+            String firstname = input.next();
+            if (isthereaDuplicateName(firstname) == true) {
+                System.out.println("NAME ALREADY EXISTS");
+                return null;
+            }
+            System.out.println("Enter Lastname");
+            String lastname = input.next();
+            System.out.println("Enter Address");
+            String address = input.next();
+            System.out.println("Enter City");
+            String city = input.next();
+            System.out.println("Enter State");
+            String state = input.next();
+            System.out.println("Enter ZIP");
+            int zip = input.nextInt();
+            System.out.println("Enter Phonenumber");
+            long phonenumber = input.nextLong();
+            System.out.println("Enter Email");
+            String email = input.next();
+
+            contact.setFirstname(firstname);
+            contact.setLastname(lastname);
+            contact.setAddress(address);
+            contact.setCity(city);
+            contact.setState(state);
+            contact.setZip(zip);
+            contact.setPhonenumber(phonenumber);
+            contact.setEmail(email);
+
+            contactsList.add(contact);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(":::::::::::::::::::::INVALID ENTRY::::::::::::::::::::::");
         }
-
-        System.out.println("Enter Phonenumber");
-        long phonenumber = 0;
-        try {
-            phonenumber = input.nextLong();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("Enter Email");
-        String email = input.next();
-
-
-        contact.setFirstname(firstname);
-        contact.setLastname(lastname);
-        contact.setAddress(address);
-        contact.setCity(city);
-        contact.setState(state);
-        contact.setZip(zip);
-        contact.setPhonenumber(phonenumber);
-        contact.setEmail(email);
-
-        contactsList.add(contact);
         return contactsList;
     }
 
