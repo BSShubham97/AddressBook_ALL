@@ -2,6 +2,7 @@
 package com.bridgelabz;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 class OptionMenu extends ContactMethods {
     /**
@@ -18,7 +19,8 @@ class OptionMenu extends ContactMethods {
             System.out.println("2 - DISPLAY ALL CONTACTS");
             System.out.println("3 - EDIT CONTACT");
             System.out.println("4 - DELETE CONTACT");
-            System.out.println("5 - QUIT CONTACT MENU");
+            System.out.println("5 - COUNT OF PEOPLE IN A CITY ");
+            System.out.println("6 - QUIT");
             System.out.print("Enter Option: ");
             int option = input.nextInt();
             switch (option) {
@@ -34,7 +36,7 @@ class OptionMenu extends ContactMethods {
                 case 4:
                     removePerson();
                     break;
-                case 5:
+                case 6:
                     System.out.println("PROGRAM EXITED !");
                     quit = true;
                     break;
@@ -56,7 +58,7 @@ class MultipleBooks {
 
         while (true) {
             OptionMenu option = new OptionMenu();
-            System.out.println("SELECT OPTION \n 1. CREATE ADDRESS BOOK /2. DISPLAY ADDRESS BOOK /3. GET DETAILS FROM CITY 0. EXIT ");
+            System.out.println("SELECT OPTION \n 1. CREATE ADDRESS BOOK /2. DISPLAY ADDRESS BOOK /3. GET DETAILS FROM CITY/4.GET DETAILS FROM STATE/5.SIZE/ 0. EXIT ");
             System.out.print("Enter Option: ");
             int choice = scanner.nextInt();
             switch (choice) {
@@ -80,16 +82,30 @@ class MultipleBooks {
                     break;
 
                 case 3:
-                    System.out.println("Enter Name for City/State");
-                    String nameForCity = scanner.next();
+                    System.out.println("Enter Name for City");
+                    String nameOfCity = scanner.next();
                     for (String keyOfBook : bookList.keySet()) {
                         bookList.get(keyOfBook)
                                 .stream()
-                                .filter(contactInfo -> nameForCity.equals(contactInfo.getCity()))
+                                .filter(contactInfo -> nameOfCity.equals(contactInfo.getCity()))
                                 .forEach(System.out::println);
                     }
                     break;
 
+                case 4:
+                    System.out.println("Enter Name for State");
+                    String nameOfState = scanner.next();
+                    for (String keyOfBook : bookList.keySet()) {
+                        bookList.get(keyOfBook)
+                                .stream()
+                                .filter(contact -> nameOfState.equals(contact.getState()))
+                                .forEach(System.out::println);
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Size: "+bookList.size());
+                    break;
                 case 0:
                     System.exit(0);
                     break;

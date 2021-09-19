@@ -1,6 +1,5 @@
 package com.bridgelabz;
 
-import java.io.IOException;
 import java.util.*;
 
 public class ContactMethods {
@@ -176,5 +175,9 @@ public class ContactMethods {
             }
         }
         return false;
+    }
+    public void contactsListSize(){
+        int size = contactsList.size();
+       System.out.println("SIZE OF CONTACT LIST: "+size);
     }
 }
