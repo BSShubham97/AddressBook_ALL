@@ -21,7 +21,9 @@ class OptionMenu extends ContactMethods {
             System.out.println("4 - DELETE CONTACT");
             System.out.println("5 - COUNT OF PEOPLE IN A CITY ");
             System.out.println("6 - SORT ALPHABETICALLY");
-            System.out.println("7 - QUIT");
+            System.out.println("7 - SORT BY CITY");
+            System.out.println("7 - SORT BY ZIP CODE");
+            System.out.println("8 - QUIT");
             System.out.print("Enter Option: ");
             int option = input.nextInt();
             switch (option) {
@@ -44,6 +46,12 @@ class OptionMenu extends ContactMethods {
                     sortAlphabetically();
                     break;
                 case 7:
+                    sortbyCity();
+                    break;
+                case 8:
+                    sortbyCity();
+                    break;
+                case 9:
                     System.out.println("PROGRAM EXITED !");
                     quit = true;
                     break;

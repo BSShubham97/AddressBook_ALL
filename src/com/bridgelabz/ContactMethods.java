@@ -187,5 +187,17 @@ public class ContactMethods {
                 .sorted(Comparator.comparing(Contact::getFirstname)).collect(Collectors.toList());
         sortedList.forEach(System.out::println);
     }
+    public void sortbyCity(){
+
+        List<Contact> sortedList = contactsList.stream()
+                .sorted(Comparator.comparing(Contact::getCity)).collect(Collectors.toList());
+        sortedList.forEach(System.out::println);
+    }
+    public void sortbyZip(){
+
+        List<Contact> sortedList = contactsList.stream()
+                .sorted(Comparator.comparing(Contact::getZip)).collect(Collectors.toList());
+        sortedList.forEach(System.out::println);
+    }
 
 }
