@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ContactMethods {
     //ABILITY TO ADD MULTIPLE PERSONS IN ADDRESSBOOK USING COLLECTION ARRAYLIST
@@ -180,4 +181,11 @@ public class ContactMethods {
         int size = contactsList.size();
        System.out.println("SIZE OF CONTACT LIST: "+size);
     }
+    public void sortAlphabetically(){
+
+        List<Contact> sortedList = contactsList.stream()
+                .sorted(Comparator.comparing(Contact::getFirstname)).collect(Collectors.toList());
+        sortedList.forEach(System.out::println);
+    }
+
 }
