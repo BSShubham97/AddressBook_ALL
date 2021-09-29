@@ -199,5 +199,4 @@ public class ContactMethods {
                 .sorted(Comparator.comparing(Contact::getZip)).collect(Collectors.toList());
         sortedList.forEach(System.out::println);
     }
-
 }

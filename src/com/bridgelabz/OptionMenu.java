@@ -1,6 +1,9 @@
 
 package com.bridgelabz;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,8 +25,8 @@ class OptionMenu extends ContactMethods {
             System.out.println("5 - COUNT OF PEOPLE IN A CITY ");
             System.out.println("6 - SORT ALPHABETICALLY");
             System.out.println("7 - SORT BY CITY");
-            System.out.println("7 - SORT BY ZIP CODE");
-            System.out.println("8 - QUIT");
+            System.out.println("8 - SORT BY ZIP CODE");
+            System.out.println("9 - QUIT");
             System.out.print("Enter Option: ");
             int option = input.nextInt();
             switch (option) {
@@ -49,7 +52,7 @@ class OptionMenu extends ContactMethods {
                     sortbyCity();
                     break;
                 case 8:
-                    sortbyCity();
+                    sortbyZip();
                     break;
                 case 9:
                     System.out.println("PROGRAM EXITED !");
@@ -70,10 +73,10 @@ class MultipleBooks {
     public void createBook() {
         HashMap<String, ArrayList<Contact>> bookList = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
-
-        while (true) {
+        AddressBookIOService addressBookIOService = new AddressBookIOService();
+       try{ while (true) {
             OptionMenu option = new OptionMenu();
-            System.out.println("SELECT OPTION \n 1. CREATE ADDRESS BOOK /2. DISPLAY ADDRESS BOOK /3. GET DETAILS FROM CITY/4.GET DETAILS FROM STATE/5.SIZE/ 0. EXIT ");
+            System.out.println("SELECT OPTION \n 1. CREATE ADDRESS BOOK /2. DISPLAY ADDRESS BOOK /3. GET DETAILS FROM CITY/4.GET DETAILS FROM STATE/5.SIZE/6.READ FROM A FILE 0. EXIT ");
             System.out.print("Enter Option: ");
             int choice = scanner.nextInt();
             switch (choice) {
@@ -84,6 +87,8 @@ class MultipleBooks {
                         System.out.println("ADDRESSBOOK NAME ALREADY EXISTS");
                     else
                         bookList.put(addBookName, option.operation());
+                    addressBookIOService.writeAddressBook(bookList);
+
                     break;
                 case 2:
                     if (!bookList.isEmpty()) {
@@ -119,8 +124,13 @@ class MultipleBooks {
                     break;
 
                 case 5:
-                    System.out.println("Size: "+bookList.size());
+                    System.out.println("Size: " + bookList.size());
                     break;
+
+                case 6:
+                    addressBookIOService.readAddressBook();
+                    break;
+
                 case 0:
                     System.exit(0);
                     break;
@@ -128,6 +138,9 @@ class MultipleBooks {
                 default:
                     throw new IllegalStateException("INVALID CHOICE: " + choice);
             }
-        }
+            }
+        } catch (IllegalStateException e) {
+           e.printStackTrace();
+       }
     }
 }
